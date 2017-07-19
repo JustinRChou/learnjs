@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-
 abspath="$(cd "${0%/*}" 2>/dev/null; echo "$PWD"/"${0##*/}")"
 root_dir=`dirname "$abspath"`
 app_name=learnjs
 code_bucket=${app_name}/_code_bundles
 profile=admin
-
 function check_python() {
   if ! which python > /dev/null; then
     echo "Can't find Python. You need Python 2.7 or later to use this."
@@ -32,13 +30,15 @@ function check_node_deps() {
 }
 
 function dev_server() {
-  cd public
-  ret=`python -c 'import sys; print("%i" % (sys.hexversion<0x03000000))'`
-  if [ $ret -eq 0 ]; then
-    exec python -m http.server 9292
-  else 
-    exec python -m SimpleHTTPServer 9292
-  fi
+exec python -m http.server 9292
+  #cd public
+  #ret=`python -c 'import sys; print("%i" % (sys.hexversion<0x03000000))'`
+  #if [ $ret -eq 0 ]; then
+  #  exec python -m http.server 9292
+  #else 
+    #exec python -m SimpleHTTPServer 9292
+	#exec python -m http.server 9292
+  #fi
 }
 
 function livereload_server() {
